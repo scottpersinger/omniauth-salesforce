@@ -17,7 +17,8 @@ module OmniAuth
         :scope,
         :display,
         :immediate,
-        :state
+        :state,
+        :prompt
       ]
 
       def request_phase
@@ -28,6 +29,7 @@ module OmniAuth
           mobile_request = ua.downcase =~ Regexp.new(MOBILE_USER_AGENTS)
           options[:display] = mobile_request ? 'touch' : 'page'
         end
+        options[:prompt] = 'consent'
         super
       end
 
